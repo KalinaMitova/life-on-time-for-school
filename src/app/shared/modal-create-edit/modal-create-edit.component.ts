@@ -37,7 +37,8 @@ export class ModalCreateEditComponent implements OnInit {
       title: [ this.item.title, [ Validators.required ] ],
       description: [ this.item.description, ],
       until_date: [ this.item.until_date, [ Validators.required ] ],
-      goalCategoryId: [ '' ]
+      goalCategoryId: [ '' ],
+      recurring_type: [ this.item.recurring_type | 0 ],
     } );
   }
 
@@ -45,6 +46,7 @@ export class ModalCreateEditComponent implements OnInit {
   get description() { return this.modalForm.get( 'description' ) };
   get until_date() { return this.modalForm.get( 'until_date' ) };
   get goalCategoryId() { return this.modalForm.get( 'goalCategoryId' ) };
+  get recurring_type() { return this.modalForm.get( 'recurring_type' ); }
 
   close() {
     this.modalForm.reset();

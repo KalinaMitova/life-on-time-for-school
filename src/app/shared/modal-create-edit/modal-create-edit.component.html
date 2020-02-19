@@ -36,6 +36,20 @@
                 </div>
             </div>
 
+            <div class="form-group" *ngIf="itemType==='action'">
+                <label for="recurring_type">Recurring</label>
+                <select class="custom-select" id="recurring" formControlName="recurring_type" required>
+                    {{recurringTypes | json}}
+                    <option *ngFor="let recurringType of recurringTypes" [value]="recurringType.value">
+                        {{recurringType.name}}
+                    </option>
+                </select>
+                <!-- <div class="alert alert-danger"
+                    *ngIf="recurring_type.invalid && (recurring_type.dirty || recurring_type.touched) &&
+                    recurring_type.errors?.required">
+                    The field is required!
+                </div> -->
+            </div>
 
             <div class="form-group">
                 <label for="dueDate">Select due date for your {{itemType}} </label>

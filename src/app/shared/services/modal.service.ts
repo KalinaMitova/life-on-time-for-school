@@ -3,6 +3,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { Modals } from "../models/modals";
 import { SeparatedDate } from "../models/date";
 import { GlobalService } from './global.service';
+import { RecurringTypes } from '../models/recurringTypes';
 
 @Injectable( {
   providedIn: 'root'
@@ -93,6 +94,7 @@ export class ModalService {
       }
       if ( itemType === 'action' ) {
         item[ 'goal_id' ] = itemInfo;
+        modalRef.componentInstance.recurringTypes = RecurringTypes;
         modalRef.componentInstance.maxDate = date;
       } else if ( itemType === 'goal' && itemInfo ) {
         item.title = itemInfo.name ? itemInfo.name : '';
@@ -108,6 +110,7 @@ export class ModalService {
         modalRef.componentInstance.maxDate = date;
       }
       modalRef.componentInstance.item = itemInfo;
+      modalRef.componentInstance.recurringTypes = RecurringTypes;
     }
     modalRef.componentInstance.actionType = actionType; modalRef.componentInstance.itemType = itemType;
   }
