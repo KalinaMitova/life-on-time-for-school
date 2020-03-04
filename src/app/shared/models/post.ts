@@ -4,14 +4,15 @@ export enum MediaType {
   'audio'
 }
 
-export interface BlogPost {
+export interface Post {
   id: string,
   date: string,
   title: string;
   imageUrl?: string;
+  audioUrl?: string;
   content: string;
   shortContent?: string;
-  link: string;
-  mediaType: MediaType;
+  link?: string;
+  mediaType?: MediaType;
   mediaId?: string;
 }

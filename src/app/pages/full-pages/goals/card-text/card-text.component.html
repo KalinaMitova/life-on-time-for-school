@@ -17,8 +17,12 @@
         </button>
     </div>
     <div class="modal-body">
-        <img class="card-img-top img-fluid" [src]="post.imageUrl? (post.imageUrl | safe: 'url' ):   './assets/img/photos/06.jpg'" alt="Card image cap">
+        <!-- <img class="card-img-top img-fluid" [src]="post.imageUrl? (post.imageUrl | safe: 'url' ):   './assets/img/photos/06.jpg'" alt="Card image cap"> -->
+        <audio *ngIf="post.audioUrl" controls>
+            <source [src]="post.audioUrl | safe: 'url'" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
         <p class="card-text" *ngIf="post.content" [innerHtml]="post.content | safe: 'html'"></p>
-        <!-- <iframe [src]="post.link? (post.link | safe: 'resourceUrl'): ''"></iframe> -->
+
     </div>
 </ng-template>

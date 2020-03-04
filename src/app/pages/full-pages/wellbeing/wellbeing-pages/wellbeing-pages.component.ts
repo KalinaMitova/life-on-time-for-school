@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'app/shared/services/user.service';
-import { BlogPost, MediaType } from 'app/shared/models/blogPost';
+import { Post, MediaType } from 'app/shared/models/post';
 import { PostService } from 'app/shared/services/post.service';
 import { ApplicationService } from 'app/shared/services/application.service';
 
@@ -16,7 +16,7 @@ export class WellbeingPagesComponent implements OnInit, OnDestroy {
   path: string;
   title: string;
   appType: string;
-  posts: Array<BlogPost>;
+  posts: Array<Post>;
 
   private appTypeSubs: Subscription;
   private postSubs: Subscription;
@@ -41,23 +41,23 @@ export class WellbeingPagesComponent implements OnInit, OnDestroy {
             .getAplicationTypes()
             .subscribe( appTypes => {
               const userAppTypeWPId = appTypes.find( at => at.id == Number( userAppTypeId ) ).wpCategoryId;
-              this.postSubs =
-                this.postService
-                  .getWellbeingPostByCAtegoryAndAppType( String( userAppTypeWPId ), this.path )
-                  .subscribe( posts => {
-                    posts.map( post => {
-                      if ( MediaType[ post.mediaType ] === 'image'
-                        && post.mediaId != '0' ) {
-                        this.postMediaSubs =
-                          this.postService
-                            .getPostMedia( post.mediaId )
-                            .subscribe( media => {
-                              post.imageUrl = media;
-                            } )
-                      }
-                    } )
-                    this.posts = posts;
-                  } )
+              // this.postSubs =
+              //   this.postService
+              //     .getWellbeingPostByCAtegoryAndAppType( String( userAppTypeWPId ), this.path )
+              //     .subscribe( posts => {
+              //       posts.map( post => {
+              //         if ( MediaType[ post.mediaType ] === 'image'
+              //           && post.mediaId != '0' ) {
+              //           this.postMediaSubs =
+              //             this.postService
+              //               .getPostMedia( post.mediaId )
+              //               .subscribe( media => {
+              //                 post.imageUrl = media;
+              //               } )
+              //         }
+              //       } )
+              //   this.posts = posts;
+              // } )
             } )
 
         } )

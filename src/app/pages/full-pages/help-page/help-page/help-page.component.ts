@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from 'app/shared/services/post.service';
-import { BlogPost } from 'app/shared/models/blogPost';
+import { Post } from 'app/shared/models/post';
 import { Subscription } from 'rxjs';
 
 @Component( {
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class HelpPageComponent implements OnInit, OnDestroy {
 
 
-  posts: Array<BlogPost>;
+  posts: Array<Post>;
 
   private postSubs: Subscription;
   private postMediaSubs: Subscription;

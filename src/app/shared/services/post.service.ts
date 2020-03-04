@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BlogPost, MediaType } from '../models/blogPost';
+import { Post, MediaType } from '../models/post';
 import { map } from 'rxjs/operators';
 import { environment } from "environments/environment";
-
-import { WellbeingInfo } from '../../shared/models/wellbeingInfo';
 
 //'https://lotweb.cweb.bg/wp-json/wp/v2/'
 // const BASE_URL = environment.wp_url;
@@ -21,6 +19,7 @@ const HELP_END_URL = 'app_help?per_page=100';//todo: must be deleted
 const WELLBEING_END_URL = 'articles';
 const BASE_POST_IMAGE_URL = BASE_URL + 'admin/assets/img/articles/';
 //https://lifeontime.co.uk/api/admin/assets/img/articles/5e3896ba819b4.jpeg
+const BASE_POST_AUDIO_URL = BASE_URL + 'admin/assets/audio/articles/';
 
 @Injectable( {
   providedIn: 'root'
@@ -37,8 +36,23 @@ export class PostService {
         map( posts => {
           return posts[ 'data' ].filter( post => post.categories.includes( categoryId ) & post.classes.includes( classId ) ).
             map( post => {
-              post.imageUrl = post.image ? BASE_POST_IMAGE_URL + post.image : null;
-              return post;
+              //
+              //id: 3,
+              // title: "Lets Talk about sleep!",
+              //   categories: "1",
+              //     image: "5e4bb93e71688.jpg",
+              //       classes: "1,2,3,4",
+              //         content: "<p style="text - align: center; "><br></p><p style="text - align: center; "><br></p><p style="text - align: center; "><iframe frameborder="0" src="//www.youtube.com/embed/q_9_fCgl7yY?start=8" width="640" height="360" class="note-video-clip"></iframe><br></p>",
+              // audio: null,
+              //   created_at: "2020-02-18 10:07:32",
+              //     updated_at: "2020-02-18 10:17:06"
+              return {
+                id: post.id,
+                title: post.title,
+                content: post.content,
+                imageUrl: post.image ? BASE_POST_IMAGE_URL + post.image : null,
+                audioUrl: post.audio ? BASE_POST_AUDIO_URL + post.audio : null,
+              };
             } )
         } )
       );
@@ -46,8 +60,8 @@ export class PostService {
 
 
 
-  getLats4Posts(): Observable<Array<BlogPost>> {
-    return this.http.get<Array<BlogPost>>( WP_API_URL + LAST_4_POSTS_END_URL )
+  getLats4Posts(): Observable<Array<Post>> {
+    return this.http.get<Array<Post>>( WP_API_URL + LAST_4_POSTS_END_URL )
       .pipe(
         map( posts => {
           return posts.map( post => {
@@ -63,8 +77,8 @@ export class PostService {
       )
   }
 
-  getHelpPosts(): Observable<Array<BlogPost>> {
-    return this.http.get<Array<BlogPost>>( WP_API_URL + HELP_END_URL )
+  getHelpPosts(): Observable<Array<Post>> {
+    return this.http.get<Array<Post>>( WP_API_URL + HELP_END_URL )
       .pipe(
         map( posts => {
           return posts.map( post => {
@@ -74,27 +88,27 @@ export class PostService {
       )
   }
 
-  getWellbeingPostByCAtegoryAndAppType( appWPId: string, wellbeingCategory: string ): Observable<Array<BlogPost>> {
-    const options = {
-      params: {
-        wellbeing_apps: appWPId,
-        wellbeing_categories: WellbeingInfo.categoryId[ wellbeingCategory ],
-      }
-    }
-    return this.http
-      .get<Array<BlogPost>>( WP_API_URL + WELLBEING_END_URL, options )
-      .pipe(
-        map( posts => {
-          return posts.map( post => {
-            return this.getAllKindsPostDataFromAPI( post );
-          } )
-        } )
-      )
-  }
+  // getWellbeingPostByCAtegoryAndAppType( appWPId: string, wellbeingCategory: string ): Observable<Array<BlogPost>> {
+  //   const options = {
+  //     params: {
+  //       wellbeing_apps: appWPId,
+  //       wellbeing_categories: WellbeingInfo.categoryId[ wellbeingCategory ],
+  //     }
+  //   }
+  //   return this.http
+  //     .get<Array<BlogPost>>( WP_API_URL + WELLBEING_END_URL, options )
+  //     .pipe(
+  //       map( posts => {
+  //         return posts.map( post => {
+  //           return this.getAllKindsPostDataFromAPI( post );
+  //         } )
+  //       } )
+  //     )
+  // }
 
-  private GetImagePostsDataFromAPI( post ): BlogPost {
+  private GetImagePostsDataFromAPI( post ): Post {
     const postDate = ( post[ 'date' ].split( 'T' ) )[ 0 ].split( '-' );
-    const blogPost: BlogPost = {
+    const blogPost: Post = {
       id: post[ 'id' ],
       date: `${postDate[ 2 ]}/${postDate[ 1 ]}/${postDate[ 0 ]}`,
       title: post[ 'title' ][ 'rendered' ],
@@ -108,7 +122,7 @@ export class PostService {
     return blogPost;
   }
 
-  private getAllKindsPostDataFromAPI( post ): BlogPost {
+  private getAllKindsPostDataFromAPI( post ): Post {
     const postDate = ( post[ 'date' ].split( 'T' ) )[ 0 ].split( '-' );
     //contentTypeId: {
     // video: 14,
@@ -116,7 +130,7 @@ export class PostService {
     //     audio: 20,
     //}
     const mediaType = this.setMediaType( post[ 'wellbeing_type' ][ 0 ] );
-    const blogPost: BlogPost = {
+    const blogPost: Post = {
       id: post[ 'id' ],
       date: `${postDate[ 2 ]}/${postDate[ 1 ]}/${postDate[ 0 ]}`,
       mediaType: mediaType,

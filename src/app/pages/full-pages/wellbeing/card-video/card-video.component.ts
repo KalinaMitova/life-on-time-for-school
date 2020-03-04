@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { BlogPost } from 'app/shared/models/blogPost';
+import { Post } from 'app/shared/models/post';
 
 @Component( {
   selector: 'app-card-video',
@@ -8,7 +8,7 @@ import { BlogPost } from 'app/shared/models/blogPost';
   encapsulation: ViewEncapsulation.None
 } )
 export class CardVideoComponent implements OnInit {
-  @Input( 'post' ) post: BlogPost;
+  @Input( 'post' ) post: Post;
 
   constructor () { }
 

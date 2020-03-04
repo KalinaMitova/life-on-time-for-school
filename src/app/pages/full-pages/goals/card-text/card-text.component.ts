@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BlogPost } from 'app/shared/models/blogPost';
+import { Post } from 'app/shared/models/post';
 
 @Component( {
   selector: 'app-card-text',
@@ -8,7 +8,7 @@ import { BlogPost } from 'app/shared/models/blogPost';
   styleUrls: [ './card-text.component.scss' ]
 } )
 export class CardTextComponent implements OnInit {
-  @Input() post: BlogPost;
+  @Input() post: Post;
 
   constructor (
     private modalService: NgbModal

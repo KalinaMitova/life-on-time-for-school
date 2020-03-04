@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlogPost } from 'app/shared/models/blogPost';
+import { Post } from 'app/shared/models/post';
 
 @Component( {
   selector: 'app-card-audio',
@@ -7,7 +7,7 @@ import { BlogPost } from 'app/shared/models/blogPost';
   styleUrls: [ './card-audio.component.scss' ]
 } )
 export class CardAudioComponent implements OnInit {
-  @Input( 'post' ) post: BlogPost;
+  @Input( 'post' ) post: Post;
 
   constructor () { }
 
