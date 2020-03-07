@@ -23,7 +23,6 @@ export class CardTextComponent implements OnInit {
     const modalRef = this.modalService.open( content, { size: 'lg' } );
 
     modalRef.result.then( ( result ) => {
-      console.log( result );
     } ).catch( ( error ) => {
       console.log( error );
     } );

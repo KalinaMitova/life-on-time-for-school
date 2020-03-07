@@ -9,23 +9,25 @@ import { Post } from 'app/shared/models/post';
 } )
 export class CardTextComponent implements OnInit {
   @Input() post: Post;
+  backgroundImage: any;
 
   constructor (
     private modalService: NgbModal
   ) { }
 
-  ngOnInit(
 
+  ngOnInit(
   ) {
   }
 
   open( content: TemplateRef<any> ) {
     const modalRef = this.modalService.open( content, { size: 'lg' } );
+    this.modalService.open
 
     modalRef.result.then( ( result ) => {
-      console.log( result );
+
     } ).catch( ( error ) => {
-      console.log( error );
+
     } );
   }
 }

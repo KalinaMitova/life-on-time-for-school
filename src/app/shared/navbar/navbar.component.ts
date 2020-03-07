@@ -61,7 +61,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.modalEditUserProfileSubs = this.eventService.on( 'edit user profile', ( actionInfo => this.editUserProfile( actionInfo ) ) )
   }
   private editUserProfile( actionInfo: ActionInfo ) {
-    console.log( actionInfo );
     const newUserInfo: NewUserInfo = {
       mood: actionInfo.formValue[ 'mood' ],
       email: actionInfo.formValue[ 'email' ],
@@ -69,7 +68,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       confirmPassword: actionInfo.formValue[ 'confirmPassword' ],
     }
     this.editUserProfileSubs = this.userService.putEditCurrentUserInfo( newUserInfo )
-      .subscribe( data => console.log( data ) );
+      .subscribe();
   }
 
   logout() {
@@ -108,7 +107,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.userService.getCurrenrUserInfo()
         .subscribe( user => {
           this.modalService.open( modalName, itemType, actionType, user );
-          console.log( 'open profile' );
         } )
   }
 

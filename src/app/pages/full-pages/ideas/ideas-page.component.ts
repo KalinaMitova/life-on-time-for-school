@@ -172,15 +172,11 @@ export class IdeasPageComponent implements OnInit, OnDestroy, AfterViewInit {
     //todo delete files from server
     this.idea.info.files.forEach( f => {
       this.deleteSubscription =
-        this.deleteFileFromServer( f.path ).subscribe(
-          ( data ) => console.log( data )
-        )
+        this.deleteFileFromServer( f.path ).subscribe();
     } )
     this.idea.info.images.forEach( i => {
       this.deleteSubscription =
-        this.deleteFileFromServer( i.path ).subscribe(
-          ( data ) => console.log( data )
-        )
+        this.deleteFileFromServer( i.path ).subscribe();
     } )
     this.deleteSubscription = this.ideaService.deletIdeaById( ideaId )
       .subscribe( data => {

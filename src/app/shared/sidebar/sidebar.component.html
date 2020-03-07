@@ -6,8 +6,8 @@
                 <img [src]="logoUrl ? logoUrl : 'assets/img/logo.png'" />
             </div>
         </a>
+        <h4 *ngIf="schoolName" class="align-middle text">{{schoolName}}</h4>
     </div>
-    <h4 class="align-middle text">{{schoolName}}</h4>
 </div>
 <!-- Sidebar Header Ends-->
 <!-- Sidebar Content starts -->

@@ -223,7 +223,8 @@ export class GoalService {
       .pipe(
         map( data => {
           return {
-            isTasksCompleted: data[ 'data' ].tasks.find( t => t.status == '0' ) === undefined,
+            isTasksCompleted: data[ 'data' ].tasks > 0 && data[ 'data' ].tasks.find( t => t.status == '0' ) === undefined,
+            hasTasks: data[ 'data' ].tasks > 0,
             status: data[ 'data' ][ 'status' ]
           }
         } )

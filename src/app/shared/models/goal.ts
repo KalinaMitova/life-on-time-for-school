@@ -14,5 +14,6 @@ export interface Goal {
 
 export interface GoalForComplete {
   status: string,
-  isTasksCompleted: boolean
+  isTasksCompleted: boolean,
+  hasTasks: boolean,
 }

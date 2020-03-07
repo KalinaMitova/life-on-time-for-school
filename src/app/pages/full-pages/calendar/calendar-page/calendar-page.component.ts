@@ -62,7 +62,6 @@ export class CalendarPageComponent implements OnInit, OnDestroy {
     this.googleCalendarSubs =
       this.authService.postIsUserLogedInToGoodleCalendar()
         .subscribe( data => {
-          console.log( data );
           if ( data == 0 ) {
             ( window as any ).open( `${environment.google_calendar__url}${GOOGLE_LOGIN_END_URL}`, 'popup', 'width=600,height=600' );
           } else if ( data == 1 ) {

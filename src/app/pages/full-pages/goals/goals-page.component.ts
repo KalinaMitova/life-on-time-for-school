@@ -229,7 +229,6 @@ export class GoalsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if ( itemInfo.formValue ) {
         item[ 'feedback' ] = itemInfo.formValue[ 'feedback' ];
-        console.log( item );
       }
       this.editTaskSubscription = this.taskService.putEditTaskById( itemInfo.itemId, item )
         .subscribe( data => {
@@ -244,7 +243,7 @@ export class GoalsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.goalTasksCompletedSubs = this.goalService.getGoalInfoForStatus( goalId )
       .subscribe( goalInfo => {
         //Autocomplete Goal, when all tasks are completed
-        if ( goalInfo.isTasksCompleted === true ) {
+        if ( goalInfo.isTasksCompleted === true || !goalInfo.hasTasks ) {
           if ( goalInfo.status == '0' ) {
             const item = {
               id: goalId,

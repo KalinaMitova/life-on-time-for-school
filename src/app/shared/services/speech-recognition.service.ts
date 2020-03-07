@@ -24,10 +24,7 @@ export class SpeechRecognitionService {
         alert( 'Your browser dont support speech recognition' )
       }
       this.speechRecognition.onresult = function ( event ) {
-        console.log( event );
         let final_transcript = '';
-
-        console.log( this.speechRecognition );
         this.speechRecognition.continuous = true;
         this.speechRecognition.interimResults = true;
         this.speechRecognition.lang = 'en-US';

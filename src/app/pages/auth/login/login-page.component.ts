@@ -36,7 +36,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.appService
         .getAppSettings()
         .subscribe( settings => {
-          console.log( settings );
           this.schoolLogo = settings.schoolLogo;
           this.schoolName = settings.schoolName;
           this.globalService.setAppSettings( settings );

@@ -1,12 +1,67 @@
-.modal-lg {
-    width: 800px;
-    height: 600px;
+.card-content {
+    padding: 0;
+    position: relative;
+    margin: 10px;
 }
 
-.modal-dialog {
-    overflow-y: initial !important
+.card-content h4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 5px;
+    font-size: 14px;
+    margin-bottom: 0;
+    width: 100%;
 }
 
-.modal-body {
-    overflow-y: auto;
+.card-content-click {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.card-content img {
+    height: 180px;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.card-content:hover img {
+    filter: blur(2px);
+}
+
+.card-content:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: teal;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 1.5rem;
+}
+
+.modal>.modal-dialog {
+    width: 100% !important;
+    padding: 0;
+}
+
+.modal>.modal-dialog>.modal-content {
+    height: auto;
+    min-height: 100%;
+    width: 100% !important;
+    border-radius: 0;
 }

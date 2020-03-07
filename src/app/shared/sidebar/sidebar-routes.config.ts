@@ -13,5 +13,5 @@ export const ROUTES: RouteInfo[] = [
     {
         path: '/progress-dashboard', title: 'Progress', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
     },
-    { path: '/help', title: 'Help', icon: 'ft-life-buoy', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    // { path: '/help', title: 'Help', icon: 'ft-life-buoy', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 ];
