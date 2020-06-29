@@ -12,5 +12,5 @@ export const environment = {
   apiUrl: 'https://lifeontime.co.uk/api/',
   fileUplodeUrl: 'http://localhost:8080/uploads/',
   wp_url: 'https://lifeontime.co.uk/',
-  google_calendar__url: 'http://localhost:8080/sync/',
+  google_calendar_url: 'http://localhost:8080/sync/',
 };
